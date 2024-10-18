@@ -174,16 +174,21 @@ public class RobotContainer {
     drive.setDefaultCommand(
         DriveCommands.joystickDrive(
             drive, () -> -driver.getLeftY(), () -> -driver.getLeftX(), () -> driver.getRightX()));
-    driver.y().onTrue(CompositeCommands.resetHeading(drive));
-    driver.leftBumper().whileTrue(CompositeCommands.collect(intake, arm));
-    driver.leftTrigger().whileTrue(CompositeCommands.eject(intake, arm));
+    driver.y().onTrue(CompositeCommands.resetHeading(drive));//
+    driver.leftBumper().whileTrue(CompositeCommands.collect(intake, arm));//
+    driver.leftTrigger().whileTrue(CompositeCommands.eject(intake, arm));//
     driver.rightBumper().whileTrue(CompositeCommands.shootSubwoofer(intake, arm, shooter));
     driver.rightTrigger().whileTrue(CompositeCommands.shootAmp(intake, arm, shooter));
     driver.b().whileTrue(CompositeCommands.shootFeed(intake, arm, shooter));
-    operator.povUp().whileTrue(climber.unlock());
-    operator.povDown().whileTrue(climber.climb());
-    operator.y().whileTrue(climber.deClimb());
-    driver.a().whileTrue(intake.shoot());
+    operator.povUp().whileTrue(climber.unlock());//
+    operator.povDown().whileTrue(climber.climb());//
+    operator.y().whileTrue(climber.deClimb());//
+    driver.a().whileTrue(intake.shoot());//
+    operator.leftBumper().whileTrue(CompositeCommands.collect(intake, arm));//left bumper intake
+    operator.leftTrigger().whileTrue(CompositeCommands.eject(intake, arm));//left trigger outtake
+    operator.rightTrigger().whileTrue(CompositeCommands.shootAmp(intake, arm, shooter));//right trigger spins it
+    operator.b().whileTrue(CompositeCommands.shootFeed(intake, arm, shooter));//B shoot
+    operator.rightBumper().whileTrue(CompositeCommands.shootSubwoofer(intake, arm, shooter));//right bumper autoshoots
   }
 
   public void robotPeriodic() {
